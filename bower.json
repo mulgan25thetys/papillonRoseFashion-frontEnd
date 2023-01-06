@@ -1,0 +1,30 @@
+{
+  "name": "papillon-rose-fashion",
+  "description": "app de blog",
+  "main": "",
+  "authors": [
+    "mulgan25thetys <mulganthetys.ngougbiamayele@esprit.tn>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "blog",
+    "Blog",
+    "BLOG",
+    "model",
+    "HAbit",
+    "croquis",
+    "robe"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.6.3"
+  }
+}

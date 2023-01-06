@@ -1,0 +1,64 @@
+<div class="page">
+    <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand navbar-brand-autodark">
+                <a href=".">
+                    <img src="../../../../../assets/static/logo-white.svg" width="110" height="32" alt="Tabler"
+                        class="navbar-brand-image">
+                </a>
+            </h1>
+            <div class="navbar-nav flex-row d-lg-none">
+                <div class="nav-item dropdown">
+
+                    <app-customer></app-customer>
+
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+
+                <app-menus></app-menus>
+
+            </div>
+
+        </div>
+        
+    </aside>
+    
+    <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
+        <div class="container-xl">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-nav flex-row order-md-last">
+                <div class="d-none d-md-flex">
+                    <div class="nav-item dropdown d-none d-md-flex me-3">
+
+                        <app-notifications></app-notifications>
+
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+
+                    <app-customer></app-customer>
+
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <div>
+
+                    <app-search></app-search> 
+
+                </div>
+            </div>
+        </div>
+    </header> 
+    <div class="page-wrapper">
+
+        <router-outlet></router-outlet>
+
+        <app-footer></app-footer>
+    </div>
+</div>

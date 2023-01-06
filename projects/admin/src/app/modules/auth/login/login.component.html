@@ -1,0 +1,90 @@
+<form class="card card-md" #formLogin="ngForm">
+  <div class="card-body">
+    <h2 class="card-title text-center mb-4">Connecter vous à votre compte</h2>
+    <div class="mb-3">
+      <label class="form-label">Nom d'Utilisateur</label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="username.invalid && username.touched"
+        name="username"
+        [(ngModel)]="user.username"
+        #username="ngModel"
+        required
+        placeholder="Entrer votre nom d'utilisateur"
+      />
+      <div *ngIf="username.errors && (username.valid || username.touched)">
+        <p class="text-danger" *ngIf="username.errors?.required">
+          Entrer votre nom d'utilisateur
+        </p>
+      </div>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">
+        Mot de passe
+        <span class="form-label-description">
+          <a href="./forgot-password.html">Mot de passe oublié?</a>
+        </span>
+      </label>
+      <div class="input-group input-group-flat">
+        <input
+          type="password"
+          id="password"
+            class="form-control"
+            placeholder="Password"
+            [class.is-invalid]="password.invalid && password.touched"
+            name="password"
+            [(ngModel)]="user.password"
+            #password="ngModel"
+            required
+        />
+        <span class="input-group-text">
+          <a
+          id="show-password"
+              class="link-secondary"
+              title="Show password"
+              data-bs-toggle="tooltip"
+              (click)="showHidePassword()"
+              style="cursor: pointer"
+            ><!-- Download SVG icon from http://tabler-icons.io/i/eye -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <circle cx="12" cy="12" r="2" />
+              <path
+                d="M22 12c-2.667 4.667 -6 7 -10 7s-7.333 -2.333 -10 -7c2.667 -4.667 6 -7 10 -7s7.333 2.333 10 7"
+              />
+            </svg>
+          </a>
+        </span>
+      </div>
+    <div *ngIf="password.errors && (password.valid || password.touched)">
+        <p class="text-danger" *ngIf="password.errors?.required">
+            Please Enter your Password
+        </p>
+    </div>
+    </div>
+    <div class="mb-2">
+      <label class="form-check">
+        <input type="checkbox" class="form-check-input" />
+        <span class="form-check-label">Se souvenir de moi</span>
+      </label>
+    </div>
+    <div class="form-footer">
+      <button type="submit" class="btn btn-primary w-100" id="btn-login"
+    style="cursor: pointer"
+    [disabled]="formLogin.invalid"
+    (click)="onLogin()">Se connecter</button>
+    </div>
+  </div>
+</form>
