@@ -1,3 +1,6 @@
+
 export const environment = {
-  production: true
+  production: true,
+  title: 'Local Environment Backend Url',
+  apiURL: 'http://localhost:8086'
 };
