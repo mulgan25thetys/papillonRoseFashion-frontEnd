@@ -7,7 +7,6 @@ import { PostsComponent } from './posts/posts.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'index', pathMatch: 'full' },
-  { path: 'menus', redirectTo: 'menus/categories-posts', pathMatch: 'full' },
   {
     path: '', component: UsersComponent,
     children: [
@@ -23,13 +22,13 @@ const routes: Routes = [
   {
     path: '', component: CategoryPostComponent,
     children: [
-      { path: 'menus/categories-posts', loadChildren: () => import('./category-post/category-post.module').then(m => m.CategoryPostModule) }
+      { path: 'categories-posts', loadChildren: () => import('./category-post/category-post.module').then(m => m.CategoryPostModule) }
     ]
   },
   {
     path: '', component: PostsComponent,
     children: [
-       { path: 'menus/posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule)  }
+       { path: 'posts', loadChildren: () => import('./posts/posts.module').then(m => m.PostsModule)  }
     ]
   },
   

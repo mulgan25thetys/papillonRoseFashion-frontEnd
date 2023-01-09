@@ -1,0 +1,50 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Edit Category - {{category.name}}</h3>
+        </div>
+        <div class="card-body">
+            <form #form="ngForm">
+                <div class="alert alert-danger" *ngIf="hasError" role="alert">
+                    <h4 class="alert-title">{{errorTitle}}</h4>
+                    <div class="text-muted">{{errorMessage}}</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Category Name</label>
+                    <input class="form-control  mb-2" type="text" name="cateName" #cateName="ngModel"
+                        [(ngModel)]="category.name" [class.is-invalid]="cateName.invalid && cateName.touched" required
+                        placeholder="Enter category name">
+                    <div *ngIf="cateName.errors && (cateName.valid || cateName.touched)">
+                        <p class="text-danger" *ngIf="cateName.errors?.required">
+                            Enter the category's name!
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Premium or Free</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="catePremium" #catePremium="ngModel"
+                            [(ngModel)]="category.isPremium" type="checkbox">
+                        <span class="form-check-label">by setting in premium the category is only accessible by your
+                            subscribers</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <button [disabled]="form.invalid" (click)="editCategory()" style="cursor: pointer;"
+                        class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                            <path d="M16 5l3 3"></path>
+                        </svg>
+                        Edit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

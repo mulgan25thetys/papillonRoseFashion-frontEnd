@@ -1,8 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PostsComponent } from './posts.component';
+import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { ListsComponent } from './lists/lists.component';
 
-const routes: Routes = [{ path: '', component: PostsComponent }];
+const routes: Routes = [
+  { path: '', redirectTo:'lists',pathMatch:'full' },
+  { path: 'lists', component: ListsComponent },
+  { path: 'add-new', component: AddComponent },
+  { path: 'edit-post/:id',component:EditComponent},
+  { path:'**',component:ErrorPageComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

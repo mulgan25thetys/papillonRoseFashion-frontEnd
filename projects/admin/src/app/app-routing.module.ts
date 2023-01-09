@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './helpers/error/page-not-found/page-not-f
 
 const routes: Routes = [
   {
-    path:'',redirectTo:'dashboard/u/index',pathMatch:'full'
+    path:'',redirectTo:'dashboard/index',pathMatch:'full'
   },
   {
     path: '',

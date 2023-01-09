@@ -1,0 +1,29 @@
+
+<div class="top-posts">
+
+    <div *ngFor="let post of posts" class="single-list flex-row d-flex">
+        <div class="thumb">
+            <div class="date">
+                <span>{{post.addedAt | date:'dd'}}</span><br>{{post.addedAt | date:'MMM'}}
+            </div>
+            <img width="250" height="200" [src]="post.image.url" alt="">
+        </div>
+        <div class="detail">
+            <a [routerLink]="['/',post.category.slug,post.slug]">
+                <h4 class="pb-20">{{post.title}}</h4>
+            </a>
+            <p>
+                {{post.content}}.
+            </p>
+            <p class="footer pt-20">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <a href="#">{{post.likes}} Likes</a> <i class="ml-20 fa fa-comment-o" aria-hidden="true"></i> <a href="#">
+                    {{post.comments?.length}} Comments</a>
+            </p>
+        </div>
+    </div>
+    <div class="justify-content-center d-flex">
+        <a class="text-uppercase primary-btn loadmore-btn mt-40 mb-60" href="#"> Load More Post</a>
+    </div>
+
+</div>

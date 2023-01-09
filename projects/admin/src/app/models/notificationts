@@ -1,0 +1,11 @@
+export class Notification {
+    id?:any;
+	object?:any;
+	message?:any;
+	byMail?:any;
+	inInternal?:any;
+	isView?:any;
+	isShowed?:any;
+	sended?:any;
+	dateNotification?:any;
+}

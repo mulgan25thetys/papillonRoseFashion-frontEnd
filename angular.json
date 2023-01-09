@@ -128,7 +128,7 @@
               "projects/admin/src/styles.css"
             ],
             "scripts": [
-              "bower_components/jquery/dist/jquery.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
               "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
@@ -211,5 +211,5 @@
   "cli": {
     "analytics": false
   },
-  "defaultProject": "admin"
+  "defaultProject": "landing"
 }

@@ -36,7 +36,7 @@
         </a>
     </li>
     <li class="nav-item dropdown" routerLinkActive="active">
-        <a class="nav-link dropdown-toggle" routerLink="/dashboard/menus/" data-bs-toggle="dropdown" data-bs-auto-close="false"
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false"
             role="button" aria-expanded="false">
             <span
                 class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
@@ -50,17 +50,47 @@
                 </svg>
             </span>
             <span class="nav-link-title">
-                Menus
+                Categories Posts
             </span>
         </a>
         <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
                 <div class="dropdown-menu-column">
-                    <a class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/menus/categories-posts">
-                        Categories Posts
+                    <a class="dropdown-item"  [routerLink]="['/dashboard/categories-posts/lists']">
+                        All Categories
                     </a>
-                    <a class="dropdown-item" routerLinkActive="active" routerLink="/dashboard/menus/posts">
-                        Posts
+                    <a class="dropdown-item"  [routerLink]="['/dashboard/categories-posts/add-new']">
+                       New Category
+                    </a>
+                </div>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item dropdown" routerLinkActive="active">
+        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button"
+            aria-expanded="false">
+            <span
+                class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-album" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                    <path d="M12 4v7l2 -2l2 2v-7"></path>
+                </svg>
+            </span>
+            <span class="nav-link-title">
+                Posts
+            </span>
+        </a>
+        <div class="dropdown-menu">
+            <div class="dropdown-menu-columns">
+                <div class="dropdown-menu-column">
+                    <a class="dropdown-item" [routerLink]="['/dashboard/posts/lists']">
+                        All Posts
+                    </a>
+                    <a class="dropdown-item" [routerLink]="['/dashboard/posts/add-new']">
+                        New Post
                     </a>
                 </div>
             </div>

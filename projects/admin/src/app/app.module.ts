@@ -9,8 +9,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorInterceptorService } from './helpers/error-interceptor.service';
 import { JwtInterceptor } from './helpers/jwt-interceptor.service';
-import { NgHttpLoaderModule } from 'ng-http-loader';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { LoaderInterceptor } from './helpers/loader-interceptor.service';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,12 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     HttpClientJsonpModule,
     NgApexchartsModule,
     ToastrModule.forRoot(),
+    ComponentsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor,multi: true,},
   ],
   bootstrap: [AppComponent]
 })

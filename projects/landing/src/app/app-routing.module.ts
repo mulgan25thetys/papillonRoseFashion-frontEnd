@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryComponent } from './category/category.component';
+import { BlogComponent } from './blog/blog.component';
 import { PageNotFoundComponent } from './helpers/error/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path:'',redirectTo:'home',pathMatch:'full'
   },
-  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
   {
-    path: '', component: CategoryComponent,
+    path: '', component: BlogComponent,
     children: [
-      { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) }
+      { path: '', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) }
     ]
-  },
+  }, 
   {
     path: '**',
     component:PageNotFoundComponent

@@ -1,0 +1,125 @@
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">All Categories</h3>
+        </div>
+        <div class="card-body border-bottom py-3">
+            <div class="d-flex">
+                <div class="ms-auto text-muted">
+                    Search:
+                    <div class="ms-2 d-inline-block">
+                        <input type="text" [(ngModel)]="search" class="form-control form-control-sm" aria-label="Search invoice">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table card-table table-vcenter text-nowrap datatable">
+                <thead>
+                    <tr>
+                        <th class="w-1"><input class="form-check-input m-0 align-middle" type="checkbox"
+                                aria-label="Select all invoices"></th>
+                        <th>Name</th>
+                        <th>Premium</th>
+                        <th>Added at</th>
+                        <th>Updated at</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let category of categoriesPosts | slice:0:limit  | filter : search | paginate
+                            : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count
+                                };, let i=index">
+                        <td><input class="form-check-input m-0 align-middle" type="checkbox"
+                                aria-label="Select invoice"></td>
+                        <td><span class="text-muted">{{category.name}}</span></td>
+                        <td>
+                            <svg *ngIf="category.isPremium == true" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-check" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l5 5l10 -10"></path>
+                            </svg>
+                            <svg *ngIf="category.isPremium == false || category.isPremium == null" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="24" height="24"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </td>
+                        <td>
+                            {{category.addedAt | date}}
+                        </td>
+                        <td>
+                            {{category.updatedAt | date}}
+                        </td>
+                        <td class="text-end">
+                            <span class="dropdown">
+                                <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport"
+                                    data-bs-toggle="dropdown">Actions</button>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" [routerLink]="['/dashboard/categories-posts/edit-category/',category.id]">
+                                        Edit
+                                    </a>
+                                    <a class="dropdown-item" (click)="deleteCategory(category.id)" href="javascript:void(0)">
+                                        Delete
+                                    </a>
+                                </div>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer d-flex align-items-center">
+            
+            <ul class="pagination m-0 ms-auto">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </ul>
+            
+        </div>
+    </div>
+</div>
+
+<button href="#" class="btn d-none" id="confirmModalBtn"  data-bs-toggle="modal" data-bs-target="#modal-danger">
+    Danger modal
+</button>
+
+<div class="modal modal-blur fade" id="modal-danger" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-status bg-danger"></div>
+            <div class="modal-body text-center py-4">
+                <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 9v2m0 4v.01" />
+                    <path
+                        d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75" />
+                </svg>
+                <h3>Are you sure?</h3>
+                <div class="text-muted">{{message}}</div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
+                                Cancel
+                            </a></div>
+                        <div class="col"><a href="#" (click)="delete()" class="btn btn-danger w-100" data-bs-dismiss="modal">
+                                Delete {{totalElements}} items
+                            </a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ import { NavbarProfileComponent } from './navbar-profile/navbar-profile.componen
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SearchComponent } from './search/search.component';
 import { MenusComponent } from './menus/menus.component';
+import { LoaderComponent } from './loader/loader.component';
 
 
 @NgModule({
@@ -19,13 +20,15 @@ import { MenusComponent } from './menus/menus.component';
     NavbarProfileComponent,
     NotificationsComponent,
     SearchComponent,
-    MenusComponent
+    MenusComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
     ComponentsRoutingModule
   ],
-  exports: [CustomerComponent, FooterComponent, MenusComponent, NavbarProfileComponent, NotificationsComponent
+  exports: [CustomerComponent, FooterComponent,LoaderComponent,
+    MenusComponent, NavbarProfileComponent, NotificationsComponent
   ,SearchComponent]
 })
 export class ComponentsModule { }

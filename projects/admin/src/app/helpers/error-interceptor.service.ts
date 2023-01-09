@@ -32,7 +32,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
               this.authenticationService.currentUser = null; 
               location.reload();
-              this.router.navigateByUrl('/accueil');
+              this.router.navigateByUrl('/dashboard');
             }
           }
 
