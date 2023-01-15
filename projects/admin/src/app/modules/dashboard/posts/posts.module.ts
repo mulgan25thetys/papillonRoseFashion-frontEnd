@@ -10,6 +10,7 @@ import { EditComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { ListsComponent } from './lists/lists.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     PostsRoutingModule,
     Ng2SearchPipeModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    CKEditorModule
   ]
 })
 export class PostsModule { }

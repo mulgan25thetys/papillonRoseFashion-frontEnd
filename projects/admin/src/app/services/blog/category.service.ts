@@ -27,6 +27,10 @@ export class CategoryService {
     return this.http.get<Category>(this.apiUrl + "get-category/"+id);
   }
 
+  getCategoryByName(name:String) :Observable<any>{
+    return this.http.get<Category>(this.apiUrl + "get-category-by-name/"+name);
+  }
+
   deleteCategory(id:any):Observable<any> {
     return this.http.delete<Category>(this.apiUrl + "delete-category/" + id);
   }

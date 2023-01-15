@@ -1,1 +1,132 @@
-<p>edit works!</p>
+<div class="col-12" >
+    <div class="card" *ngIf="hasPost">
+        <div class="card-header">
+            <h3 class="card-title">Edit Post</h3>
+        </div>
+        <div class="card-body">
+            <form #form="ngForm">
+                <div class="alert alert-danger" *ngIf="hasError" role="alert">
+                    <h4 class="alert-title">{{errorTitle}}</h4>
+                    <div class="text-muted">{{errorMessage}}</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Category</label>
+                    <input class="form-control" name="category"
+                        [(ngModel)]="categoryName" (change)="onChangePostCategory($event)" name="category" [(ngModel)]="post.category.name" list="datalistOptions" placeholder="Type to search..." />
+                    <datalist id="datalistOptions">
+                        <option *ngFor="let category of categories" [value]="category.name"></option>
+                    </datalist>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Post title</label>
+                    <input class="form-control  mb-2" type="text" name="title" #title="ngModel" [(ngModel)]="post.title"
+                        [class.is-invalid]="title.invalid && title.touched" required placeholder="Enter post title">
+                    <div *ngIf="title.errors && (title.valid || title.touched)">
+                        <p class="text-danger" *ngIf="title.errors?.required">
+                            Enter the Post's title!
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Post Content</label>
+                    <ckeditor tagName="textarea" [class.is-invalid]="content.invalid && content.touched" required
+                        name="content" [(ngModel)]="post.content" #content="ngModel" [editor]="Editor" data="">
+                    </ckeditor>
+                    <div *ngIf="content.errors && (content.valid || content.touched)">
+                        <p class="text-danger" *ngIf="content.errors?.required">
+                            Enter the Post's content!
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Premium or Free</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="postPremium" #postPremium="ngModel"
+                            [(ngModel)]="post.isPremium" type="checkbox">
+                        <span class="form-check-label">by setting in premium the post is only accessible by your
+                            subscribers</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Downloaded</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="postDownloaded" #postDownloaded="ngModel" [(ngModel)]="post.isDownloaded"
+                            type="checkbox">
+                        <span class="form-check-label">by setting in downloaded the post can be download by public</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Published</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="postPublish" #postPublish="ngModel" [(ngModel)]="post.isPublished"
+                            type="checkbox">
+                        <span class="form-check-label">by setting in published the post can be view by public</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Shared</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="postShared" #postShared="ngModel" [(ngModel)]="post.isShared"
+                            type="checkbox">
+                        <span class="form-check-label">by setting in shared the post can be share on socials networks by public</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <button [disabled]="form.invalid" (click)="editPost()" style="cursor: pointer;"
+                        class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24"
+                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
+                            <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
+                            <path d="M16 5l3 3"></path>
+                        </svg>
+                        Edit
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class="alert alert-info" *ngIf="hasPost ==false" >
+        {{nonExistingPostMessage}}
+    </div>
+</div>
+
+<button href="#" class="btn d-none" id="btn-success-operation" data-bs-toggle="modal" data-bs-target="#modal-success">
+    Success modal
+</button>
+
+<div class="modal modal-blur fade" id="modal-success" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="modal-status bg-success"></div>
+            <div class="modal-body text-center py-4">
+                <!-- Download SVG icon from http://tabler-icons.io/i/circle-check -->
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-green icon-lg" width="24" height="24"
+                    viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9 12l2 2l4 -4" />
+                </svg>
+                <h3>Editing succedeed</h3>
+                <div class="text-muted">.The operation was successful. A post of publication was edited!</div>
+            </div>
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col"><a href="javascript:void(0)" (click)="goToList()" class="btn w-100" >
+                                Go to List
+                            </a></div>
+                        <div class="col"><a href="#" class="btn btn-success w-100" data-bs-dismiss="modal">
+                                Ok
+                            </a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

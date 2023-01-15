@@ -211,5 +211,5 @@
   "cli": {
     "analytics": false
   },
-  "defaultProject": "landing"
+  "defaultProject": "admin"
 }

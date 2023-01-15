@@ -27,4 +27,20 @@ export class PostService {
   getPostsByCategory(id:any):Observable<any> {
     return this.http.get<Post[]>(this.apiUrl + "get-posts-by-category/" + id);
   }
+
+  getPost(id:any):Observable<any> {
+    return this.http.get<Post>(this.apiUrl + "get-post/" + id);
+  }
+
+  addPost(post: Post,idCategory:any):Observable<any> {
+    return this.http.post<Post>(this.apiUrl + "add-post/"+idCategory, post);
+  }
+
+  editPost(post: Post):Observable<any> {
+    return this.http.put<Post>(this.apiUrl + "edit-post", post);
+  }
+
+  deletePost(id:any):Observable<any> {
+    return this.http.delete<Post>(this.apiUrl + "delete-post/" + id);
+  }
 }

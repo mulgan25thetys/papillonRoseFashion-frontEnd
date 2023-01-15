@@ -33,8 +33,7 @@ export class ListsComponent implements OnInit {
   findAllPosts() {
     this.postServe.findAll().subscribe(
       (data) => {
-        this.posts = data;
-        console.log(this.posts);
+        this.posts = data.reverse();
         
       }, (error: HttpErrorResponse) => {
         if (error.status != 500) {
@@ -43,6 +42,26 @@ export class ListsComponent implements OnInit {
       }
     )
   }
+
+  getPostContent(content) {
+    if (content.length > 500) {
+      return content.substring(0, 500)+"...";
+    } else {
+      return content;
+    }
+  }
+
+  delete(id: any) {
+    this.postServe.deletePost(id).subscribe(
+      () => {
+        this.ngOnInit();
+      }, (error) => {
+          this.toastr.error(error,"Deleting Post");
+        
+      }
+    )
+  }
+  
 
   onTableDataChange(event: any) {
     this.page = event;

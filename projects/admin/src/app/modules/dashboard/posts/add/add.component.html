@@ -1,1 +1,65 @@
-<p>add works!</p>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">New Post</h3>
+        </div>
+        <div class="card-body">
+            <form #form="ngForm">
+                <div class="alert alert-danger" *ngIf="hasError" role="alert">
+                    <h4 class="alert-title">{{errorTitle}}</h4>
+                    <div class="text-muted">{{errorMessage}}</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Select Category</label>
+                    <input class="form-control" (change)="getCategoryId($event)" name="category" [(ngModel)]="categoryName" list="datalistOptions" placeholder="Type to search..." />
+                    <datalist id="datalistOptions">
+                        <option *ngFor="let category of categories" [value]="category.name" ></option>
+                    </datalist>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Post title</label>
+                    <input class="form-control  mb-2" type="text" name="title" #title="ngModel"
+                        [(ngModel)]="post.title" [class.is-invalid]="title.invalid && title.touched" required
+                        placeholder="Enter post title">
+                    <div *ngIf="title.errors && (title.valid || title.touched)">
+                        <p class="text-danger" *ngIf="title.errors?.required">
+                            Enter the Post's title!
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Post Content</label>
+                    <ckeditor tagName="textarea" [class.is-invalid]="content.invalid && content.touched" required name="content" [(ngModel)]="post.content" #content="ngModel" [editor]="Editor" data=""></ckeditor>
+                    <div *ngIf="content.errors && (content.valid || content.touched)">
+                        <p class="text-danger" *ngIf="content.errors?.required">
+                            Enter the Post's content!
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-label">Is Premium or Free</div>
+                    <label class="form-check form-switch">
+                        <input class="form-check-input" name="postPremium" #postPremium="ngModel"
+                            [(ngModel)]="post.isPremium" type="checkbox">
+                        <span class="form-check-label">by setting in premium the post is only accessible by your
+                            subscribers</span>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <button [disabled]="form.invalid" (click)="addPost(form)" style="cursor: pointer;"
+                        class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
+                            height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -26,7 +26,7 @@ import { ComponentsModule } from './components/components.module';
     HttpClientJsonpModule,
     NgApexchartsModule,
     ToastrModule.forRoot(),
-    ComponentsModule
+    ComponentsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
