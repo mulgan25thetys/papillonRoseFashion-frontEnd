@@ -1,7 +1,7 @@
 <h4 class="text-uppercase pb-20">post categories</h4>
 <ul>
-    <li>
-        <a href="#">Technology <span>37</span></a>
+    <li *ngFor="let category of categories">
+        <a [routerLink]="['/category']" [queryParams]="{'name':category.name}">{{category.name | uppercase}} <span>{{category.nbrPosts}}</span></a>
     </li>
 
-</ul>
+</ul> 

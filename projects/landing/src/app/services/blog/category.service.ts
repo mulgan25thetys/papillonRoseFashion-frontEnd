@@ -22,6 +22,9 @@ export class CategoryService {
   findAll():Observable<Category[]>{
     return this.http.get<Category[]>(this.apiUrl+"find-all/")
   }
+  getCategories():Observable<Category[]>{
+    return this.http.get<Category[]>(this.apiUrl+"get-categories")
+  }
 
   getCategory(id:number) :Observable<any>{
     return this.http.get<Category>(this.apiUrl + "get-category/"+id);

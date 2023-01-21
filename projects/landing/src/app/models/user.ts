@@ -1,12 +1,14 @@
 export class User {
     id?:any;
 	uniqueId?:any;
+	description?:any;
 	username?:any;
 	firstname?:any;
 	lastname?:any;
 	email?:any;
 	password?:any;
 	profile?:any;
+	profileUrl?:any;
 	phone?:any;
 	country?:any;
 	city?:any;

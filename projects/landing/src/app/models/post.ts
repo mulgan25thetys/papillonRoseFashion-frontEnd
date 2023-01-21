@@ -19,7 +19,7 @@ export class Post {
 	unlikes?:any;
 	numberShares?:any;
 	isPremium?:any;
-	addedAt?:any;
+	addedAt?:Date;
 	updatedAt?:any;
     author?:User;
 	category?:Category;
@@ -28,4 +28,6 @@ export class Post {
 	myLikes?:LikesPost[];
 	myViews?: ViewsPost[];
 	image?: Gallery;
+	profileDefault?: any;
+	recentTime?: String = "0 Hours";
 }

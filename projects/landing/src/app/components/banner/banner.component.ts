@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from '../../models/post';
+import { User } from '../../models/user';
+import { PostService } from '../../services/blog/post.service';
 
 @Component({
   selector: 'app-banner',
@@ -7,13 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BannerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private postServe:PostService) { }
 
+  posts: Post[] = [];
+  post = new Post();
   ngOnInit(): void {
+    this.post.comments = [];
+    this.post.author = new User();
+    this.getRecentPost();
   }
 
-  getBannerImage() {
-    return "url(../../../assets/img/header-bg.jpg)";
+  getBannerImage(image:String) {
+    return "url("+image+")";
   }
 
+  getRecentPost() {
+    this.postServe.getRecentsPosts().subscribe(
+      res => {
+        this.posts = res;
+        this.post = this.posts[0];
+      }
+    )
+  }
 }
+ 

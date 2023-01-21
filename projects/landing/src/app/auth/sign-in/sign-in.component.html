@@ -1,0 +1,83 @@
+<div class="login-wrap p-4 p-md-5">
+  <div class="d-flex">
+    <div class="w-100">
+      <h3 class="mb-4">Sign In</h3>
+    </div>
+    <div class="w-100">
+      <p class="social-media d-flex justify-content-end">
+        <a
+          href="#"
+          class="social-icon d-flex align-items-center justify-content-center"
+          ><span class="fa fa-facebook"></span
+        ></a>
+        <a
+          href="#"
+          class="social-icon d-flex align-items-center justify-content-center"
+          ><span class="fa fa-google"></span
+        ></a>
+      </p>
+    </div>
+  </div>
+  <div *ngIf="errorMsg != ''" class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+  <form #form="ngForm" class="login-form">
+    <div class="form-group">
+      <div class="icon d-flex align-items-center justify-content-center">
+        <span class="fa fa-user"></span>
+      </div>
+      <input
+        type="text"
+        class="form-control rounded-left"
+        placeholder="Username"
+        required
+        #username="ngModel"
+        [(ngModel)]="user.username"
+        name="username"
+
+      />
+    </div>
+    <div *ngIf="username.errors && (username.touched || username.valid)">
+        <p *ngIf="username.errors?.required" class="text-danger">Please enter your username!</p>
+    </div>
+    <div class="form-group">
+      <div class="icon d-flex align-items-center justify-content-center">
+        <span class="fa fa-lock"></span>
+      </div>
+      <input
+        type="password"
+        class="form-control rounded-left"
+        placeholder="Password"
+        required
+        #password="ngModel"
+        [(ngModel)]="user.password"
+        name="password"
+      />
+    </div>
+    <div *ngIf="password.errors && ( password.touched || password.valid)">
+        <p *ngIf="password.errors?.required" class="text-danger">Please enter your username!</p>
+    </div>
+    <div class="form-group d-flex align-items-center">
+      <div class="w-100 d-flex justify-content-end">
+        <button
+          type="button"
+          id="btn-login"
+          (click)="onLogin()"
+          [disabled]="form.invalid"
+          class="btn btn-primary rounded submit"
+        >
+        <div *ngIf="loading" class="spinner-border" style="width: 1.5rem; height: 1.5rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+          Login
+        </button>
+      </div>
+    </div>
+    <div class="form-group mt-4">
+      <div class="w-100 text-center">
+        <p class="mb-1">Don't have an account? <a href="#">Sign Up</a></p>
+        <p><a href="#">Forgot Password</a></p>
+      </div>
+    </div>
+  </form>
+</div>

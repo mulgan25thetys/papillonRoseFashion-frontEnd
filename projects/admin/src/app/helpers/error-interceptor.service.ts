@@ -17,13 +17,18 @@ export class ErrorInterceptorService implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(catchError(err => {
           
-          if ([401, 403].indexOf(err.status) !== -1) {
-            this.toastr.error("Vous n'etes pas autorisé(e) ou l'authentification a échouée!", "Authentification");
+          if ([401].indexOf(err.status) !== -1) {
+            this.toastr.error("Authentication failed! Please try again", "Authentification");
+          }
+
+          if ([403].indexOf(err.status) !== -1) {
+            this.toastr.error("You are not authorized to access this resource.", "Authentification");
+            this.authenticationService.logout();
           }
 
           if ([500].indexOf(err.status) !== -1) {
            // this.router.navigateByUrl('/internal-server-error');
-            this.toastr.warning("Une erreur interne du serveur s'est produite", "Internal server error");
+            this.toastr.warning("An internal server error occurred", "Internal server error");
           }
 
           if ([504].indexOf(err.status) !== -1) {

@@ -9,11 +9,12 @@
             <img width="250" height="200" [src]="post.image.url" alt="">
         </div>
         <div class="detail">
-            <a [routerLink]="['/',post.category.slug,post.slug]">
-                <h4 class="pb-20">{{post.title}}</h4>
+            <a [routerLink]="['/',post.slug]">
+                <h4 *ngIf="post.title.length <=40" class="pb-20 text-uppercase">{{post.title }}</h4>
+                <h4 *ngIf="post.title.length >40" class="pb-20 text-uppercase">{{post.title | slice:0:40}}...</h4>
             </a>
-            <p>
-                {{post.content}}.
+            <p style="font-size: 15px;" [innerHTML]="getPostContent(post.content)">
+                
             </p>
             <p class="footer pt-20">
                 <i class="fa fa-heart-o" aria-hidden="true"></i>

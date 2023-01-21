@@ -37,7 +37,7 @@ export class AuthenticationService {
     } 
 
     confirm() {
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/']);
     }
 
   isClient() {
@@ -107,7 +107,7 @@ export class AuthenticationService {
       localStorage.removeItem('currentUser');
       this.currentUserSubject.next(null);
      
-      this.router.navigate(['/auth/login']);
-    //location.reload();
+      this.router.navigate(['/']);
+      //location.reload();
   }
 }

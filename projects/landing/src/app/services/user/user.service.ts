@@ -1,10 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.prod';
 import { Role } from '../../models/role';
 import { User } from '../../models/user';
-import { SignupRequest } from '../../utils/signupRequest';
+import { environment } from 'projects/admin/src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +20,9 @@ export class UserService {
 
   constructor(private http:HttpClient) { }
 
-  changePassword(user:SignupRequest,id:any):Observable<User>{
-    return this.http.put<User>(this.apiUrl+"change-password/"+id,user)
-  }
+  // changePassword(user:SignupRequest,id:any):Observable<User>{
+  //   return this.http.put<User>(this.apiUrl+"change-password/"+id,user)
+  // }
 
   addUser(user:User): Observable<any>{
     return this.http.post<User>(this.apiUrl + "add", user);

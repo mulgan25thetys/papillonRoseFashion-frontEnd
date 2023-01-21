@@ -16,14 +16,32 @@
                     <!-- Dropdown -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                            Pages
+                            Category
                         </a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" routerLink="/category">Category</a>
+                            <a class="dropdown-item" *ngFor="let category of categories"
+                             [routerLink]="['/category']" [queryParams]="{'name':category.name}">{{category.name | uppercase}}</a>
                         </div>
                     </li>
-                </ul>
+                </ul> 
             </div>
+            <app-notification></app-notification>
+            
+                <div *ngIf="!isLogged" class="btn-group">
+                    <button style="cursor: pointer;" class="btn secondary-btn btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                        <span>Sign In/Sign Up</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" style="cursor: pointer;" type="button" routerLink="/auth/sign-in">Sign In</a>
+                        <a class="dropdown-item" style="cursor: pointer;" type="button" routerLink="/auth/sign-up">Sign Up</a>
+                    </div>
+                </div>
+                <div *ngIf="isLogged" class="btn-group">
+                    <button style="cursor: pointer;" (click)="OnLogout()" class="btn secondary-btn btn-sm" type="button"
+                    >
+                        <span>Logout</span>
+                    </button>
+                </div>
         </div>
     </nav>
 </header>

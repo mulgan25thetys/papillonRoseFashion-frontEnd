@@ -10,7 +10,7 @@ import { AuthorComponent } from './author/author.component';
 import { SearchComponent } from './search/search.component';
 import { PostsComponent } from './posts/posts.component';
 import { SinglePostComponent } from './single-post/single-post.component';
-import { HomeComponent } from './home/home.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -22,12 +22,13 @@ import { HomeComponent } from './home/home.component';
     SearchComponent,
     PostsComponent,
     SinglePostComponent,
-    HomeComponent
+    ErrorComponent,
   ],
   imports: [
     CommonModule,
     BlogRoutingModule,
     ComponentsModule
-  ]
+  ],
+  exports: [RecentsPostsComponent,CategoryComponent,AuthorComponent,SearchComponent,PostsComponent]
 })
 export class BlogModule { }

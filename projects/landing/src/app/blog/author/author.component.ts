@@ -1,4 +1,7 @@
+import { User } from 'projects/landing/src/app/models/user';
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'projects/landing/src/app/services/user/user.service';
+import { PostService } from '../../services/blog/post.service';
 
 @Component({
   selector: 'app-author',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorComponent implements OnInit {
 
-  constructor() { }
+  author = new User();
+  constructor(private postServe:PostService) { }
 
   ngOnInit(): void {
+    this.getOwner();
+  }
+
+  getOwner() {
+    this.postServe.getOwner().subscribe(
+      res => {
+        this.author = res;
+      }
+    )
   }
 
 }

@@ -1,12 +1,12 @@
-<img src="../../assets/img/asset/s-img.jpg" alt="">
-<h2 class="text-uppercase">Adele Gonzalez</h2>
+<img width="150" height="150" [src]="author.profile" alt="">
+<h2 class="text-uppercase">{{author.firstname}} {{author.lastname}}</h2>
 <p>
-    MCSE boot camps have its supporters and
-    its detractors. Some people do not understand why you should have to spend money
+    <span style="font-size: 2rem;" *ngIf="author.description == null">...</span>
+    <span *ngIf="author.description != null">{{author.description}}</span>
 </p>
 <div class="social-link">
     <a href="#"><button class="btn"><i class="fa fa-facebook" aria-hidden="true"></i>
             Like</button></a>
     <a href="#"><button class="btn"><i class="fa fa-twitter" aria-hidden="true"></i>
             follow</button></a>
-</div>
+</div> 

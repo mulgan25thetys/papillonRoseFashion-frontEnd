@@ -6,6 +6,7 @@ import { ComponentsComponent } from './components.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BannerComponent } from './banner/banner.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { BannerComponent } from './banner/banner.component';
     ComponentsComponent,
     HeaderComponent,
     FooterComponent,
-    BannerComponent
+    BannerComponent,
+    NotificationComponent
   ],
   imports: [
     CommonModule,

@@ -6,5 +6,6 @@ export class Category{
     isPremium?: any;
 	addedAt?:any;
 	updatedAt?:any;
-    posts?:Post[];
+	posts?: Post[];
+	nbrPosts?: any;
 }

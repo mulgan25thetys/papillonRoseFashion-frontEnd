@@ -26,11 +26,16 @@ export class PostsComponent implements OnInit {
         this.posts.forEach(post => {
           post.image = post.galleries.find(g => g.isDefault == true);
         });
-        console.log(this.posts);
-        
-      }, (error:HttpErrorResponse) => {
         
       }
     )
+  }
+
+  getPostContent(content) {
+    if (content.length > 220) {
+      return content.substring(0, 220)+"...";
+    } else {
+      return content;
+    }
   }
 }

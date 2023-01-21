@@ -26,5 +26,6 @@ export class Post {
 	galleries?:Gallery[];
 	comments?:Comments[];
 	myLikes?:LikesPost[];
-	myViews?:ViewsPost[];
+	myViews?: ViewsPost[];
+	profileDefault?: any;
 }
